@@ -8,9 +8,11 @@ const client = createClient({
 
 interface GetContant {}
 
-const getContantData = async (): Promise<Entry<any>[]> => {
-  const response = await client.getEntries();
+export const getContantData = async (
+  entryName: string
+): Promise<Entry<any>[]> => {
+  const response = await client.getEntries({
+    content_type: entryName,
+  });
   return response.items;
 };
-
-export default getContantData;
