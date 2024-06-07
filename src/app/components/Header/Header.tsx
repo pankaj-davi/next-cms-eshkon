@@ -2,10 +2,8 @@
 
 import Link from 'next/link';
 import styles from './Header.module.css';
-import Image from 'next/image';
-import { useEntry } from '../hooks/useEntry';
+import { useEntry } from '../../../hooks/useEntry';
 import { DTOContant } from '@/utils/DTO';
-import LogoImg from '../../../../public/logo.jpg';
 
 interface INavLinksProps {
   id: string;

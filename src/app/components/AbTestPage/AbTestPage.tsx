@@ -1,19 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-
 import Card from '../Card/Card';
+import useStatsig from '@/hooks/useStatsig';
 
-const AbTestPage = ({ cardDetails }: any) => {
-  const [selectedCard, setSelectedCard] = useState<any>(null);
-
-  if (!selectedCard) {
-    return <div>Loading...</div>;
-  }
+const AbTestPage = ({ cardDetails, params }: any) => {
+  const isEvenVersion = useStatsig('serve_even_version');
 
   return (
     <div>
-      <Card card={selectedCard} />
+      {JSON.stringify(isEvenVersion)}
+      <Card card={isEvenVersion} />
     </div>
   );
 };

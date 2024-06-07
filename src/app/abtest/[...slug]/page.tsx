@@ -7,7 +7,7 @@ export default async function Page({ params }: any) {
   return (
     <>
       <h3>AB Testing Card using Statsig</h3>
-      <AbTestPage cardDetails={cardDetails} />
+      <AbTestPage cardDetails={cardDetails} params={params} />
     </>
   );
 }
