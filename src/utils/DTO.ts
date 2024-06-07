@@ -1,6 +1,6 @@
-export const pagesDto = (data: any) => {
+export const DTOContant = (data: any) => {
   return {
-    navLinks: data.map(
+    data: data.map(
       ({
         fields,
         sys: {
@@ -8,13 +8,13 @@ export const pagesDto = (data: any) => {
           contentType: {
             sys: { type },
           },
-          updatedAt,
+          createdAt,
         },
       }: any) => ({
         ...fields,
         id,
         type,
-        updatedAt,
+        createdAt,
       })
     ),
   };
