@@ -1,17 +1,20 @@
-'use client'
+'use client';
 
-import styles from './page.module.css'
-import React, { useEffect } from 'react'
+import styles from './page.module.css';
+import React, { useEffect } from 'react';
 
-import { useSelector, useDispatch } from '../store/store'
-import { getResources } from '../store/slices/mainSlice'
+import { useSelector, useDispatch } from '../store/store';
+import { getResources } from '../store/slices/mainSlice';
+import getPagesList from '@/utils/contentful';
 
 export default function Home() {
-    const dispatch = useDispatch()
-    const { cardDetails } = useSelector((state) => state.cards)
+  const fetchData = async () => {
+    let data = await getPagesList();
+    return data;
+  };
 
-    useEffect(() => {
-        dispatch(getResources())
-    }, [])
-    return <main className={styles.main}>{JSON.stringify(cardDetails)}</main>
+  const dispatch = useDispatch();
+  const { cardDetails } = useSelector((state) => state.cards);
+
+  return <main className={styles.main}>{JSON.stringify(cardDetails)}</main>;
 }
