@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-content: center;
+  .contant {
+    padding: 50px 0px;
+
+    .heading {
+      text-align: center;
+      margin: 30px 0px;
+    }
+    .contentPage {
+      text-align: left;
+      line-height: 1.6;
+    }
+  }
+}

@@ -4,6 +4,7 @@
   cursor: pointer;
   background-color: #fff;
   color: var(--card-text-color);
+  width: 300px;
   transition:
     background-color 0.3s ease,
     color 0.3s ease,

@@ -3,6 +3,7 @@
 import React from 'react';
 import Card from '../Card/Card';
 import useStatsig from '@/hooks/useStatsig';
+import styles from './AbTestPage.module.css';
 
 export interface ICardProps {
   cardTitle: string;
@@ -14,9 +15,10 @@ export interface ICardProps {
 
 interface AbTestPageProps {
   cardDetails: ICardProps[];
+  pageDetail: any;
 }
 
-const AbTestPage: React.FC<AbTestPageProps> = ({ cardDetails }) => {
+const AbTestPage = ({ cardDetails, pageDetail }: AbTestPageProps) => {
   const { isEnabled, isLoading } = useStatsig('serve_even_version');
 
   if (isLoading) {
@@ -28,7 +30,13 @@ const AbTestPage: React.FC<AbTestPageProps> = ({ cardDetails }) => {
   }
 
   return (
-    <Card cardDetails={cardDetails} currentVersion={isEnabled ? 'a' : 'b'} />
+    <div className={styles.container}>
+      <div className={styles.contant}>
+        <h2 className={styles.heading}>{pageDetail.title}</h2>
+        <p className={styles.contentPage}>{pageDetail.pageContant}</p>
+      </div>
+      <Card cardDetails={cardDetails} currentVersion={isEnabled ? 'a' : 'b'} />
+    </div>
   );
 };
 

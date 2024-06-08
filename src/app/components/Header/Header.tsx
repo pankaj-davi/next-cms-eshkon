@@ -5,12 +5,6 @@ import styles from './Header.module.css';
 import { useEntry } from '../../../hooks/useEntry';
 import { DTOContant } from '@/utils/DTO';
 
-interface INavLinksProps {
-  id: string;
-  title: string;
-  slug: string;
-}
-
 const Header = () => {
   const { entryData, isLoading } = useEntry({
     contentType: 'pages',
@@ -22,20 +16,6 @@ const Header = () => {
       <div className={styles.logo}>
         <Link href="/">SIMPLE CMS TEST</Link>
       </div>
-      <nav className={styles.nav}>
-        <ul>
-          {!isLoading &&
-            entryData.data.map(({ id, title, slug }: INavLinksProps) => (
-              <li key={id}>
-                <Link
-                  href={`/${slug.startsWith('abtest') ? slug : `abtest/${slug}`}`}
-                >
-                  {title}
-                </Link>
-              </li>
-            ))}
-        </ul>
-      </nav>
     </header>
   );
 };

@@ -103,9 +103,10 @@ a {
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  row-gap: 60px;
+  /* justify-content: space-between; */
   align-items: center;
-  padding: 6rem;
+  padding: 1rem 6rem;
   min-height: 100vh;
   background: linear-gradient(
       to bottom,
