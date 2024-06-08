@@ -13,7 +13,6 @@ const cardSlice = createSlice({
   initialState,
   reducers: {
     getContantSuccess(state, action) {
-      const resources = action.payload;
       state.isLoaded = true;
     },
   },

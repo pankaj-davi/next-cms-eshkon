@@ -22,19 +22,21 @@ export default function HomePage() {
 
   return (
     <div className={styles.container}>
-      <h3 className={styles.heading}>{'List of Routes'}</h3>
-      <ul>
-        {!isLoading &&
-          entryData.data.map(({ id, title, slug }: INavLinksProps) => (
-            <li key={id} className={styles.listItem}>
-              <Link
-                href={`/${slug.startsWith('abtest') ? slug : `abtest/${slug}`}`}
-              >
-                {title}
-              </Link>
-            </li>
-          ))}
-      </ul>
+      <div className={styles.wrapper}>
+        <h2 className={styles.heading}>{'List of Routes'}</h2>
+        <ul>
+          {!isLoading &&
+            entryData.data.map(({ id, title, slug }: INavLinksProps) => (
+              <li key={id} className={styles.listItem}>
+                <Link
+                  href={`/${slug.startsWith('abtest') ? slug : `abtest/${slug}`}`}
+                >
+                  {title}
+                </Link>
+              </li>
+            ))}
+        </ul>
+      </div>
     </div>
   );
 }

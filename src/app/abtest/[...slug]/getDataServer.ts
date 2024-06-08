@@ -1,4 +1,4 @@
-import { getContantData } from '@/utils/contentful';
+import { getContentData } from '@/utils/contentful';
 
 export const getData = async ({
   params: { slug },
@@ -6,12 +6,10 @@ export const getData = async ({
   params: { slug: string[] };
 }) => {
   // Fetch pages entries and cards entriess
-  const pages = await getContantData('pages');
-  const pageContent = pages.filter(
-    ({ fields }: any) => fields.slug === slug[0]
-  );
+  const pages = await getContentData('pages');
+  const pageContent = await getContentData('pages', slug.join('/'));
 
-  const cards = await getContantData('cards');
+  const cards = await getContentData('cards');
 
   return { cards, pageContent };
 };

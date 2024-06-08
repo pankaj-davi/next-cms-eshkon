@@ -8,11 +8,18 @@ const client = createClient({
 
 interface GetContant {}
 
-export const getContantData = async (
-  entryName: string
+export const getContentData = async (
+  entryName: string,
+  slug?: string
 ): Promise<Entry<any>[]> => {
-  const response = await client.getEntries({
+  const query: any = {
     content_type: entryName,
-  });
+  };
+
+  if (slug) {
+    query['fields.slug'] = slug;
+  }
+
+  const response = await client.getEntries(query);
   return response.items;
 };

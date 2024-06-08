@@ -87,12 +87,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #f5f5f5;
 }
 
 a {
@@ -114,6 +109,12 @@ a {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

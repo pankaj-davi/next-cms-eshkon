@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getContantData } from '@/utils/contentful';
+import { getContentData } from '@/utils/contentful';
 
 interface UseEntryProps {
   contentType: string;
@@ -14,7 +14,7 @@ export const useEntry = ({ contentType, dtoFunction }: UseEntryProps) => {
   const fetchEntry = async () => {
     try {
       setIsLoadin(true);
-      const data = await getContantData(contentType);
+      const data = await getContentData(contentType);
       const transformedData = dtoFunction(data);
       setEntryData(transformedData);
       setIsLoadin(false);
