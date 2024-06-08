@@ -1,0 +1,42 @@
+.container {
+  box-shadow: 10px 10px 10px #e2e2e2;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  color: var(--card-text-color);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+
+  .contant {
+    padding: 15px 10px;
+    .cardTitle {
+      padding: 20px 0px;
+      color: #958d8d;
+    }
+
+    .description {
+      color: #958d8d;
+      padding: 5px 0px;
+      width: 250px;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+  }
+
+  .cardImage {
+    max-width: 100%;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+}
+
+.container:hover {
+  background-color: var(--card-hover-background-color);
+  transform: scale(1.04);
+}

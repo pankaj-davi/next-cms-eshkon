@@ -1,16 +1,34 @@
 'use client';
 
+import React from 'react';
 import Card from '../Card/Card';
 import useStatsig from '@/hooks/useStatsig';
 
-const AbTestPage = ({ cardDetails, params }: any) => {
-  const isEvenVersion = useStatsig('serve_even_version');
+export interface ICardProps {
+  cardTitle: string;
+  description: string;
+  image: any[];
+  version: string;
+  hoverBackgroundColor: string;
+}
+
+interface AbTestPageProps {
+  cardDetails: ICardProps[];
+}
+
+const AbTestPage: React.FC<AbTestPageProps> = ({ cardDetails }) => {
+  const { isEnabled, isLoading } = useStatsig('serve_even_version');
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isEnabled === null) {
+    return <div>Failed to determine gate status</div>;
+  }
 
   return (
-    <div>
-      {JSON.stringify(isEvenVersion)}
-      <Card card={isEvenVersion} />
-    </div>
+    <Card cardDetails={cardDetails} currentVersion={isEnabled ? 'a' : 'b'} />
   );
 };
 

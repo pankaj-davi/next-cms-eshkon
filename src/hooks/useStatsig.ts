@@ -1,28 +1,42 @@
-// useStatsig.ts
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import Statsig from 'statsig-js';
 import { getRandomPin } from '@/utils/helper';
 
-const useStatsig = (gateName: string): boolean | null => {
-  const [isEnabled, setIsEnabled] = useState<boolean | null>(null);
+interface IuseStatsig {
+  isEnabled: boolean | null;
+  isLoading: boolean;
+}
 
-  useEffect(() => {
+const useStatsig = (gateName: string): IuseStatsig => {
+  const [isEnabled, setIsEnabled] = useState<boolean | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useLayoutEffect(() => {
+    setIsLoading(true);
     const initializeStatsig = async () => {
-      await Statsig.initialize(process.env.STATSIG_CLIENT_KEY as string, {
-        userID: getRandomPin(),
-      });
-      const isGateEnabled = await Statsig.checkGate(gateName);
-      setIsEnabled(isGateEnabled);
+      try {
+        await Statsig.initialize(process.env.STATSIG_CLIENT_KEY as string, {
+          userID: getRandomPin(),
+        });
+        const isGateEnabled = await Statsig.checkGate(gateName);
+        setIsEnabled(isGateEnabled);
+      } catch (error) {
+        // console.error('Failed to initialize Statsig:', error);
+        setIsEnabled(false);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     initializeStatsig();
 
     return () => {
       Statsig.shutdown();
+      setIsLoading(false);
     };
   }, [gateName]);
 
-  return isEnabled;
+  return { isEnabled, isLoading };
 };
 
 export default useStatsig;
