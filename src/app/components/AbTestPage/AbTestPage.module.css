@@ -1,11 +1,13 @@
 .container {
   width: 100%;
+  max-width: 80%;
+  margin: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
   align-content: center;
   .contant {
-    padding: 50px 0px;
+    padding: 20px 0px;
 
     .heading {
       text-align: center;
