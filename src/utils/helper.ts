@@ -8,13 +8,3 @@ export const getRandomPin = () => {
     .map((i) => chars[Math.floor(Math.random() * chars.length)])
     .join('');
 };
-
-export const showVersion = ({
-  cardDetails,
-  currentVersion,
-}: VersionCardProps): ICardProps | undefined => {
-  const card = cardDetails.find(
-    (item: ICardProps) => item.version === currentVersion
-  );
-  return card;
-};

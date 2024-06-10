@@ -1,15 +1,17 @@
 import { getContentData } from '@/utils/contentful';
 
-export const getData = async ({
+export const getData = ({
   params: { slug },
 }: {
   params: { slug: string[] };
 }) => {
-  // Fetch pages entries and cards entriess
-  const pages = await getContentData('pages');
-  const pageContent = await getContentData('pages', slug.join('/'));
+  // getting contant from contantful pages details
+  const pageContentPromise = getContentData('pages', slug.join('/'));
+  const cardsPromise = getContentData('cards');
 
-  const cards = await getContentData('cards');
-
-  return { cards, pageContent };
+  return Promise.all([pageContentPromise, cardsPromise]).then(
+    ([pageContent, cards]) => {
+      return { cards, pageContent };
+    }
+  );
 };

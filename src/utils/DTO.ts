@@ -1,4 +1,4 @@
-export const DTOContant = (data: any) => {
+export const DTOContant = (data: any[]) => {
   return {
     data: data.map(
       ({

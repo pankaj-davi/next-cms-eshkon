@@ -25,16 +25,26 @@
       font-size: 15px;
     }
   }
+}
 
-  .cardImage {
-    max-width: 100%;
-    max-height: 200px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-  }
+.cardAImg {
+  max-width: 100%;
+  max-height: 200px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.cardBImg {
+  max-width: 100%;
+  max-height: 200px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .container:hover {

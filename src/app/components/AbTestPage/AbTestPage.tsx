@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Card from '../Card/Card';
+import { CardAVersion, CardBVersion } from '../Card/Card';
 import useStatsig from '@/hooks/useStatsig';
 import styles from './AbTestPage.module.css';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -39,13 +39,26 @@ const AbTestPage = ({ cardDetails, pageDetail }: AbTestPageProps) => {
     return <div>Failed to determine gate status</div>;
   }
 
+  const currentVersion = (
+    cards: ICardProps[],
+    showCard: 'a' | 'b'
+  ): ICardProps => {
+    const card = cards.find(({ version }: ICardProps) => version === showCard);
+
+    return card!;
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.contant}>
         <h2 className={styles.heading}>{pageDetail.title}</h2>
         <p className={styles.contentPage}>{pageDetail.pageContant}</p>
       </div>
-      <Card cardDetails={cardDetails} currentVersion={isEnabled ? 'a' : 'b'} />
+      {isEnabled ? (
+        <CardAVersion currentCard={currentVersion(cardDetails, 'a')} />
+      ) : (
+        <CardBVersion currentCard={currentVersion(cardDetails, 'b')} />
+      )}
     </div>
   );
 };
